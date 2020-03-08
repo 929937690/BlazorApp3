@@ -1,0 +1,54 @@
+﻿@page "/fetchdata"
+@using BlazorApp3.Shared
+@inject HttpClient Http
+
+<h1>CoronaVirus Update</h1>
+
+<p>This component demonstrates fetching data from the server.</p>
+
+@if (cdatas == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="3-7-20 CoronaVirus Update">
+        <thead>
+            <tr>
+                <th>Province/State</th>
+                <th>Country/Region</th>
+                <th>Confirmed</th>
+                <th>Death</th>
+                <th>Latitude</th>
+                <th>Longtitude</th>
+                <th>Summary</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var cdata in cdatas)
+            {
+            <tr>
+                <td>@cdata.ProvinceState</td>
+                <td>@cdata.CountryRegion</td>
+                <td>@cdata.Confirmed</td>
+                <td>@cdata.Death</td>
+                <td>@cdata.Latitude</td>
+                <td>@cdata.Latitude</td>
+                <td>@cdata.Summary</td>
+
+            </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+    private CoronaData[] cdatas;
+
+    protected override async Task OnInitializedAsync()
+    {
+        cdatas = await Http.GetJsonAsync<CoronaData[]>("CoronaData");
+        //cdatas = ["a","b",1,1,1.00,2.00,"b"];
+    }
+
+}
