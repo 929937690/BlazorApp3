@@ -28,7 +28,7 @@ namespace BlazorApp3.Server.Controllers
         public IEnumerable<CoronaData> Get()
         {
             var rng = new Random();
-            return Enumerable.Range(1, 2).Select(index => new CoronaData
+            return Enumerable.Range(1, 5).Select(index => new CoronaData
             {   
                 ProvinceState = Summaries[rng.Next(Summaries.Length)],
                 CountryRegion = Summaries[rng.Next(Summaries.Length)],

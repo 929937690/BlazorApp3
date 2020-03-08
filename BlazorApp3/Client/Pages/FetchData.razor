@@ -4,15 +4,15 @@
 
 <h1>CoronaVirus Update</h1>
 
-<p>This component demonstrates fetching data from the server.</p>
+<p>This component will update the daily corona virus situations.</p>
 
-@if (cdatas == null)
+@if (forecasts == null)
 {
     <p><em>Loading...</em></p>
 }
 else
 {
-    <table class="3-7-20 CoronaVirus Update">
+    <table class="table">
         <thead>
             <tr>
                 <th>Province/State</th>
@@ -25,7 +25,7 @@ else
             </tr>
         </thead>
         <tbody>
-            @foreach (var cdata in cdatas)
+            @foreach (var cdata in forecasts)
             {
             <tr>
                 <td>@cdata.ProvinceState</td>
@@ -33,7 +33,7 @@ else
                 <td>@cdata.Confirmed</td>
                 <td>@cdata.Death</td>
                 <td>@cdata.Latitude</td>
-                <td>@cdata.Latitude</td>
+                <td>@cdata.Longtitude</td>
                 <td>@cdata.Summary</td>
 
             </tr>
@@ -43,12 +43,11 @@ else
 }
 
 @code {
-    private CoronaData[] cdatas;
+    private WeatherForecast[] forecasts;
 
     protected override async Task OnInitializedAsync()
     {
-        cdatas = await Http.GetJsonAsync<CoronaData[]>("CoronaData");
-        //cdatas = ["a","b",1,1,1.00,2.00,"b"];
+        forecasts = await Http.GetJsonAsync<WeatherForecast[]>("WeatherForecast");
     }
 
 }

@@ -24,15 +24,22 @@ namespace BlazorApp3.Server.Controllers
             this.logger = logger;
         }
 
+
+
         [HttpGet]
         public IEnumerable<WeatherForecast> Get()
         {
             var rng = new Random();
-            return Enumerable.Range(1, 5).Select(index => new WeatherForecast
+            return Enumerable.Range(1, 1).Select(index => new WeatherForecast
             {
-                Date = DateTime.Now.AddDays(index),
-                TemperatureC = rng.Next(-20, 55),
+                ProvinceState = "Hubei",
+                CountryRegion = "Mainland China",
+                Confirmed = 67666,
+                Death = 2959,
+                Latitude = 30.9756,
+                Longtitude = 112.2707,
                 Summary = Summaries[rng.Next(Summaries.Length)]
+
             })
             .ToArray();
         }
